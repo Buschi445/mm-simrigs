@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+import KleapForm from "../components/KleapForm";
+---
+<Base title="Checkout | MM Simrigs" description="Complete your MM Simrigs order request.">
+  <main class="checkout-page">
+    <header><a class="brand" href="/"><span>MM</span><b>SIMRIGS</b></a><a href="/cart">View cart</a></header>
+    <section class="checkout-grid">
+      <div><p class="label">MM / CHECKOUT</p><h1>Secure your <span>build.</span></h1><p class="intro">Review your configuration and submit your details. Once Stripe is connected, payment and deposit checkout will be enabled for your selected system.</p><div id="checkout-summary" class="summary"></div></div>
+      <div class="form-wrap"><KleapForm client:load formId="checkout" title="Checkout details" fields={[{name:"name",label:"Name",type:"text",required:true},{name:"email",label:"Email",type:"email",required:true},{name:"delivery",label:"Delivery address",type:"textarea",required:true}]} submitText="Continue to payment" /></div>
+    </section>
+  </main>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('mm-simrigs-cart') || '[]');
+    document.querySelector('#checkout-summary').innerHTML = cart.length ? cart.map((item) => `<p><b>${item.rig}</b><br />${item.games || 'No games selected'}${item.motion ? '<br />Motion ready' : ''}</p>`).join('') : '<p>Your cart is empty. <a href="/">Choose a rig</a>.</p>';
+  </script>
+  <style>
+    :global(*){box-sizing:border-box}:global(body){margin:0;background:#090a0b;color:#e7e9e8;font-family:monospace}.checkout-page{min-height:100vh;padding:28px 7vw 10vh}.checkout-page header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #272a2c;padding-bottom:24px}.checkout-page a{color:#a8acab;text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.08em}.brand{color:#f3f4f3!important;display:flex;align-items:center;gap:10px}.brand span{border:2px solid #50a9b9;padding:3px 5px}.brand b{font-size:20px}.checkout-grid{display:grid;grid-template-columns:1fr minmax(300px,520px);gap:8vw;max-width:1200px;margin:12vh auto}.label{color:#50a9b9;letter-spacing:.12em;font-size:10px}.checkout-page h1{font:700 clamp(58px,8vw,120px)/.85 Arial;text-transform:uppercase;margin:22px 0}.checkout-page h1 span{color:#50a9b9}.intro{color:#9da5a5;line-height:1.8;max-width:520px}.summary{border-top:1px solid #30383a;margin-top:50px;padding-top:22px;color:#a8acab;line-height:1.7}.summary b{color:#f0f2f1}.summary a{color:#50a9b9}.form-wrap{border:1px solid #30383a;padding:28px;background:#121617}@media(max-width:800px){.checkout-grid{grid-template-columns:1fr;margin-top:8vh}}
+  </style>
+</Base>

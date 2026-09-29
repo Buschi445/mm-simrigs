@@ -1,0 +1,92 @@
+---
+import Base from "../layouts/Base.astro";
+const image = "https://assets.kleap.io/108516/images/1790679297140-mm-simrig-hero";
+---
+<Base title="Customize Your MM Simrig | MM Simrigs" description="Configure your MM Simrigs race program with motion readiness, pre-installed simulators, and bespoke build requests.">
+  <main class="configurator">
+    <header class="config-header">
+      <a class="brand" href="/"><span>MM</span><b>SIMRIGS</b></a>
+      <a class="back" href="/">← Back to lineup</a>
+    </header>
+    <section class="config-grid">
+      <div class="visuals" aria-label="Selected rig images">
+        <button class="gallery-arrow prev" type="button" aria-label="Previous image">←</button>
+        <div class="gallery-track">
+          <figure class="gallery-slide active"><img src={image} alt="MM Simrigs performance simulator cockpit" /><figcaption>01 / Precision engineered</figcaption></figure>
+          <figure class="gallery-slide"><img src={image} alt="MM Simrigs turnkey racing system" /><figcaption>02 / Calibrated for the apex</figcaption></figure>
+          <figure class="gallery-slide"><img src={image} alt="MM Simrigs modular racing cockpit" /><figcaption>03 / Built for your program</figcaption></figure>
+        </div>
+        <button class="gallery-arrow next" type="button" aria-label="Next image">→</button>
+      </div>
+      <div class="options">
+        <p class="label">MM / CONFIGURATION STUDIO</p>
+        <h1>Choose your<br /><span>race program.</span></h1>
+        <p class="intro">Shape your turnkey system before our engineers confirm the final specification.</p>
+        <label class="field-label" for="rig">Selected rig</label>
+        <select id="rig" name="rig">
+          <option>Clubsport</option><option>Sprint</option><option>Cup</option><option>GT</option>
+        </select>
+        <fieldset id="motion-options" hidden>
+          <legend>Motion ready</legend>
+          <label class="check"><input type="checkbox" name="motion" /> Prepare this chassis for future motion hardware</label>
+        </fieldset>
+        <fieldset>
+          <legend>Pre-installed simulator software</legend>
+          <p class="hint">Select every title you would like configured on your PC.</p>
+          <div class="game-grid">
+            <label class="check"><input type="checkbox" name="game" value="iRacing" /> iRacing</label>
+            <label class="check"><input type="checkbox" name="game" value="ACC" /> ACC</label>
+            <label class="check"><input type="checkbox" name="game" value="Assetto Corsa" /> Assetto Corsa</label>
+            <label class="check"><input type="checkbox" name="game" value="Le Mans Ultimate" /> Le Mans Ultimate</label>
+            <label class="check"><input type="checkbox" name="game" value="RaceRoom" /> RaceRoom</label>
+            <label class="check"><input type="checkbox" name="game" value="Assetto Corsa EVO" /> Assetto Corsa EVO</label>
+            <label class="check"><input type="checkbox" name="game" value="Assetto Corsa Rallye" /> Assetto Corsa Rallye</label>
+          </div>
+        </fieldset>
+        <label class="field-label" for="requests">Other requests</label>
+        <textarea id="requests" placeholder="Custom livery, a different seat or wheel, commercial use, or anything else you have in mind."></textarea>
+        <div class="summary"><span>Configuration</span><strong id="summary-text">Clubsport / No motion option</strong></div>
+        <button class="submit" id="submit-link" type="button">Add to Cart <span>↗</span></button>
+      </div>
+      <aside class="cart-drawer" id="cart-drawer" hidden><strong id="cart-count">Added to cart</strong><p id="cart-preview"></p><a href="/cart">View Cart</a><a href="/checkout">Go to checkout</a></aside>
+    </section>
+  </main>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap');
+    :global(*){box-sizing:border-box}:global(body){margin:0;background:#090a0b;color:#e7e9e8;font-family:'DM Mono',monospace}.configurator{min-height:100vh;background:#090a0b}.config-header{height:76px;padding:0 5vw;border-bottom:1px solid #272a2c;display:flex;align-items:center;justify-content:space-between}.brand{color:#f3f4f3;text-decoration:none;display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em}.brand span{border:2px solid #50a9b9;padding:3px 5px;font-size:16px;font-weight:800}.brand b{font-size:20px}.back{color:#a8acab;text-decoration:none;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.config-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,560px);gap:6vw;max-width:1500px;margin:auto;padding:7vh 6vw}.visuals{height:calc(100vh - 140px);min-height:620px;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-color:#50a9b9 #17191a}.visuals figure{height:86%;min-height:520px;margin:0 0 28px;position:relative;scroll-snap-align:start;background:#151718}.visuals img{width:100%;height:100%;object-fit:cover;filter:contrast(1.1) saturate(.7)}figcaption{position:absolute;bottom:20px;left:22px;color:#f0f2f1;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.options{padding:4vh 0}.label,.field-label,legend{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#50a9b9}.options h1{font:700 clamp(58px,7vw,104px)/.86 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:22px 0}.options h1 span{color:#50a9b9}.intro{color:#a8acab;line-height:1.7;max-width:440px;margin-bottom:42px}.field-label,legend{display:block;margin:24px 0 12px}select,textarea{width:100%;background:#111314;border:1px solid #424648;color:#f0f2f1;padding:15px;font:12px 'DM Mono',monospace}textarea{min-height:118px;resize:vertical}fieldset{border:0;padding:0;margin:0}.hint{font-size:11px;color:#808687;margin:0 0 16px}.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}.check{display:flex;gap:10px;align-items:flex-start;color:#c5c9c8;font-size:11px;line-height:1.4}.check input{accent-color:#50a9b9;margin:1px 0 0}.summary{border-top:1px solid #34383a;border-bottom:1px solid #34383a;margin:30px 0 20px;padding:16px 0;display:flex;justify-content:space-between;gap:20px;font-size:10px;text-transform:uppercase}.summary strong{color:#f0f2f1;font-weight:400;text-align:right}.submit{display:flex;justify-content:space-between;align-items:center;background:#50a9b9;color:#071012;text-decoration:none;text-transform:uppercase;font-size:10px;letter-spacing:.08em;padding:17px 19px}.submit span{font-size:18px}@media(max-width:850px){.config-grid{display:block;padding:30px 6vw}.visuals{height:55vh;min-height:360px}.visuals figure{min-height:330px}.options{padding-top:48px}.game-grid{grid-template-columns:1fr}.options h1{font-size:64px}}
+    .gallery-track{height:100%;position:relative}.gallery-slide{display:none!important;position:absolute!important;inset:0;margin:0;height:100%!important}.gallery-slide.active{display:block!important}.gallery-arrow{position:absolute;z-index:2;top:50%;transform:translateY(-50%);background:#090a0bcc;color:#f0f2f1;border:1px solid #50a9b9;width:42px;height:42px;cursor:pointer;font-size:18px}.gallery-arrow.prev{left:18px}.gallery-arrow.next{right:18px}.cart-drawer{position:fixed;right:24px;top:24px;z-index:5;background:#171c1d;border:1px solid #50a9b9;padding:20px;max-width:300px;box-shadow:0 14px 40px #0008}.cart-drawer a{display:inline-block;color:#50a9b9;margin:12px 14px 0 0;font-size:10px;text-transform:uppercase}.cart-drawer p{color:#a8acab;font-size:11px;line-height:1.5}.cart-drawer[hidden]{display:none}
+  </style>
+  <script>
+    const rig = document.querySelector('#rig');
+    const motion = document.querySelector('#motion-options');
+    const summary = document.querySelector('#summary-text');
+    const request = document.querySelector('#requests');
+    const games = [...document.querySelectorAll('input[name="game"]')];
+    const params = new URLSearchParams(window.location.search);
+    const validRigs = ['Clubsport', 'Sprint', 'Cup', 'GT'];
+    const rawRequestedRig = decodeURIComponent(window.location.hash.slice(1)) || params.get('rig');
+    const requestedRig = validRigs.find((name) => name.toLowerCase() === (rawRequestedRig || '').trim().toLowerCase());
+    if (requestedRig) rig.value = requestedRig;
+    const slides = [...document.querySelectorAll('.gallery-slide')];
+    let slideIndex = 0;
+    function showSlide(index) { slideIndex = (index + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === slideIndex)); }
+    document.querySelector('.prev').addEventListener('click', () => showSlide(slideIndex - 1));
+    document.querySelector('.next').addEventListener('click', () => showSlide(slideIndex + 1));
+    setInterval(() => showSlide(slideIndex + 1), 5000);
+    function update() {
+      const selected = games.filter((game) => game.checked).map((game) => game.value);
+      const motionText = motion.hidden ? 'No motion option' : document.querySelector('input[name="motion"]').checked ? 'Motion ready' : 'Motion not selected';
+      summary.textContent = `${rig.value} / ${motionText}${selected.length ? ` / ${selected.length} game${selected.length === 1 ? '' : 's'}` : ''}`;
+    }
+    function updateMotion() { motion.hidden = !['Sprint', 'Cup', 'GT'].includes(rig.value); update(); }
+    rig.addEventListener('change', updateMotion); games.forEach((game) => game.addEventListener('change', update)); document.querySelector('input[name="motion"]').addEventListener('change', update); request.addEventListener('input', update);
+    document.querySelector('#submit-link').addEventListener('click', () => {
+      const item = { rig: rig.value, motion: !motion.hidden && document.querySelector('input[name="motion"]').checked, games: games.filter((game) => game.checked).map((game) => game.value).join(', '), requests: request.value };
+      const cart = JSON.parse(localStorage.getItem('mm-simrigs-cart') || '[]'); cart.push(item); localStorage.setItem('mm-simrigs-cart', JSON.stringify(cart));
+      document.querySelector('#cart-count').textContent = `${item.rig} added to cart`;
+      document.querySelector('#cart-preview').textContent = `${item.games || 'No games selected'}${item.motion ? ' · Motion ready' : ''}`;
+      document.querySelector('#cart-drawer').hidden = false;
+    });
+    updateMotion();
+  </script>
+</Base>

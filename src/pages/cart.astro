@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Cart | MM Simrigs" description="Review your configured MM Simrigs system before checkout.">
+  <main class="cart-page">
+    <header><a class="brand" href="/"><span>MM</span><b>SIMRIGS</b></a><a href="/">Back to lineup</a></header>
+    <section>
+      <p class="label">MM / CART</p>
+      <h1>Your <span>cart.</span></h1>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-actions"><a class="button secondary" href="/">Continue shopping</a><a class="button" href="/checkout">Go to checkout <span>↗</span></a></div>
+    </section>
+  </main>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('mm-simrigs-cart') || '[]');
+    const target = document.querySelector('#cart-items');
+    target.innerHTML = cart.length ? cart.map((item) => `<article><div><small>${item.rig}</small><h2>${item.rig}</h2><p>${item.games || 'No games selected'}${item.motion ? ' · Motion ready' : ''}</p>${item.requests ? `<p>${item.requests}</p>` : ''}</div><strong>${item.price || 'Build price confirmed after review'}</strong></article>`).join('') : '<p class="empty">Your cart is empty. Choose a rig to begin your configuration.</p>';
+  </script>
+  <style>
+    :global(*){box-sizing:border-box}:global(body){margin:0;background:#090a0b;color:#e7e9e8;font-family:monospace}.cart-page{min-height:100vh;padding:28px 7vw 10vh}.cart-page header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #272a2c;padding-bottom:24px}.cart-page a{color:#a8acab;text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.08em}.brand{color:#f3f4f3!important;display:flex;align-items:center;gap:10px}.brand span{border:2px solid #50a9b9;padding:3px 5px}.brand b{font-size:20px}.cart-page section{max-width:920px;margin:10vh auto}.label{color:#50a9b9;letter-spacing:.12em;font-size:10px}.cart-page h1{font:700 clamp(64px,10vw,140px)/.85 Arial;text-transform:uppercase;margin:20px 0 60px}.cart-page h1 span{color:#50a9b9}.cart-items article{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #30383a;padding:28px 0}.cart-items h2{margin:8px 0;font-size:28px}.cart-items p{color:#9da5a5;line-height:1.6}.cart-items small{color:#50a9b9;text-transform:uppercase}.cart-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}.button{display:inline-flex;padding:16px 20px;background:#50a9b9;color:#081012!important}.button.secondary{background:transparent;border:1px solid #556064;color:#e7e9e8!important}.empty{border:1px solid #30383a;padding:30px}.cart-page strong{color:#50a9b9;white-space:nowrap}
+  </style>
+</Base>
